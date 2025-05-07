@@ -5,32 +5,32 @@ import Invoices from "../components/Invoices";
 import AddInvoice from "../components/AddInvoice";
 import { getAllInvoices, deleteInvoice } from "../services/api";
 
-const Component = styled(Box)`
-  width: 80%;
-  margin: 50px auto;
-  & > h4 {
-    margin-bottom: 20px;
-  }
-  & > thead {
-    background-color: #000;
-  }
-  & > th {
-    color: #ffffff;
-    font-weight: 600;
-    font-size: 16px;
-  }
-  & > td {
-    font-size: 16px;
-  }
-`;
+// const Component = styled(Box)`
+//   width: 80%;
+//   margin: 50px auto;
+//   & > h4 {
+//     margin-bottom: 20px;
+//   }
+//   & > thead {
+//     background-color: #000;
+//   }
+//   & > th {
+//     color: #ffffff;
+//     font-weight: 600;
+//     font-size: 16px;
+//   }
+//   & > td {
+//     font-size: 16px;
+//   }
+// `;
 
-const defaultObj = {
-  id: "",
-  vendor: "",
-  product: "",
-  amount: "",
-  date: "",
-};
+// const defaultObj = {
+//   id: "",
+//   vendor: "",
+//   product: "",
+//   amount: "",
+//   date: "",
+// };
 
 const Home = () => {
   const [invoices, setInvoices] = useState([]);

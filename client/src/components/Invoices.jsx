@@ -61,7 +61,11 @@ const Invoices = ({ invoices, removeInvoice }) => {
             </TableRow>
           ))
         ) : (
-          <Typography>No pending invoices</Typography>
+          <TableRow>
+            <TableCell colSpan={6}>
+              <Typography>No pending invoices</Typography>
+            </TableCell>
+          </TableRow>
         )}
       </TableBody>
     </StyledTable>
