@@ -1,13 +1,14 @@
-package main.java.com.payflo.server.model;
+package com.example.payflo.backend.model;
 
-import jakarta.persistance.Entity;
-import jakarta.persistance.GeneratedValue;
-import jakarta.persistance.Id;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
 @Entity
 public class Invoice {
     @Id
-    @GeneratedValue(stratergy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO )
     private long id;
     private String vendor;
     private String product;
