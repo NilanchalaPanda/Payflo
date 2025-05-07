@@ -1,18 +1,6 @@
 import { useState } from "react";
-import { TextField, Typography, Box, Button, styled } from "@mui/material";
+import { TextField, Typography, Box, Button, Paper, Grid } from "@mui/material";
 import { saveInvoice } from "../services/api";
-
-const Component = styled(Box)({
-  marginTop: 20,
-  "& > p": {
-    fontSize: 26,
-    marginBottom: 10,
-  },
-  "& > div > div": {
-    marginRight: 20,
-    minWidth: 200,
-  },
-});
 
 const defaultObj = {
   vendor: "",
@@ -31,49 +19,69 @@ const AddInvoice = ({ setAddInvoice }) => {
 
   const addNewInvoice = async () => {
     await saveInvoice({ ...invoice, amount: Number(invoice["amount"]) });
-
     setAddInvoice(false);
   };
 
   return (
-    <Component>
-      <Typography>Add Invoice</Typography>
-      <Box>
-        <TextField
-          name="vendor"
-          variant="standard"
-          placeholder="Enter vendor name"
-          onChange={(e) => onValueChange(e)}
-          autoComplete="off"
-        />
-        <TextField
-          name="product"
-          variant="standard"
-          placeholder="Enter product name"
-          onChange={(e) => onValueChange(e)}
-          autoComplete="off"
-        />
-        <TextField
-          name="amount"
-          variant="standard"
-          placeholder="Enter amount (in Rs)"
-          onChange={(e) => onValueChange(e)}
-          type="number"
-          autoComplete="off"
-        />
-        <TextField
-          name="date"
-          variant="standard"
-          placeholder="Enter date"
-          onChange={(e) => onValueChange(e)}
-          type="date"
-          autoComplete="off"
-        />
-        <Button variant="contained" onClick={() => addNewInvoice()}>
-          Add Invoice
+    <Paper elevation={3} sx={{ padding: 4, marginTop: 3 }}>
+      <Typography variant="h5" gutterBottom>
+        Add New Invoice
+      </Typography>
+      <Grid container spacing={3}>
+        <Grid item xs={12} sm={6} md={4}>
+          <TextField
+            name="vendor"
+            label="Vendor Name"
+            fullWidth
+            variant="outlined"
+            onChange={onValueChange}
+          />
+        </Grid>
+        <Grid item xs={12} sm={6} md={4}>
+          <TextField
+            name="product"
+            label="Product Name"
+            fullWidth
+            variant="outlined"
+            onChange={onValueChange}
+          />
+        </Grid>
+        <Grid item xs={12} sm={6} md={4}>
+          <TextField
+            name="amount"
+            label="Amount (Rs)"
+            fullWidth
+            type="number"
+            variant="outlined"
+            onChange={onValueChange}
+          />
+        </Grid>
+        <Grid item xs={12} sm={6} md={4}>
+          <TextField
+            name="date"
+            label="Invoice Date"
+            type="date"
+            fullWidth
+            InputLabelProps={{ shrink: true }}
+            variant="outlined"
+            onChange={onValueChange}
+          />
+        </Grid>
+      </Grid>
+
+      <Box mt={4} display="flex" gap={2}>
+        <Button variant="contained" onClick={addNewInvoice}>
+          Submit
+        </Button>
+        <Button
+          variant="outlined"
+          color="secondary"
+          onClick={() => setAddInvoice(false)}
+        >
+          Cancel
         </Button>
       </Box>
-    </Component>
+    </Paper>
   );
 };
 

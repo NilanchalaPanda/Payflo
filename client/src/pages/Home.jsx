@@ -1,36 +1,9 @@
 import { useState, useEffect } from "react";
 import Header from "../components/Header";
-import { Box, Typography, styled, Button } from "@mui/material";
+import { Box, Typography, Button, Container } from "@mui/material";
 import Invoices from "../components/Invoices";
 import AddInvoice from "../components/AddInvoice";
 import { getAllInvoices, deleteInvoice } from "../services/api";
-
-// const Component = styled(Box)`
-//   width: 80%;
-//   margin: 50px auto;
-//   & > h4 {
-//     margin-bottom: 20px;
-//   }
-//   & > thead {
-//     background-color: #000;
-//   }
-//   & > th {
-//     color: #ffffff;
-//     font-weight: 600;
-//     font-size: 16px;
-//   }
-//   & > td {
-//     font-size: 16px;
-//   }
-// `;
-
-// const defaultObj = {
-//   id: "",
-//   vendor: "",
-//   product: "",
-//   amount: "",
-//   date: "",
-// };
 
 const Home = () => {
   const [invoices, setInvoices] = useState([]);
@@ -58,22 +31,26 @@ const Home = () => {
   return (
     <>
       <Header />
-      <Box style={{ margin: 20 }}>
-        <Typography variant="h4">Pending Invoices</Typography>
-        {!addInvoice && (
-          <Button
-            variant="contained"
-            onClick={() => toggleInvoice()}
-            style={{ marginTop: 15 }}
-          >
-            Add Invoice
-          </Button>
-        )}
-        {addInvoice && <AddInvoice setAddInvoice={setAddInvoice} />}
-        <Box>
-          <Invoices removeInvoice={removeInvoice} invoices={invoices} />
+      <Container maxWidth="lg" sx={{ mt: 4 }}>
+        <Box
+          display="flex"
+          justifyContent="space-between"
+          alignItems="center"
+          mb={2}
+        >
+          <Typography variant="h4" fontWeight={500}>
+            Pending Invoices
+          </Typography>
+          {!addInvoice && (
+            <Button variant="contained" onClick={toggleInvoice}>
+              Add Invoice
+            </Button>
+          )}
         </Box>
-      </Box>
+
+        {addInvoice && <AddInvoice setAddInvoice={setAddInvoice} />}
+        <Invoices invoices={invoices} removeInvoice={removeInvoice} />
+      </Container>
     </>
   );
 };

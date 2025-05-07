@@ -6,69 +6,70 @@ import {
   TableBody,
   Button,
   Typography,
-  styled,
+  Paper,
+  TableContainer,
 } from "@mui/material";
-
-const StyledTable = styled(Table)({
-  margin: 20,
-  marginTop: 40,
-  width: "80%",
-  "& > thead > tr > th": {
-    background: "#000",
-    color: "#FFFFFF",
-    fontSize: 18,
-  },
-  "& > tbody > tr > td": {
-    fontSize: 16,
-  },
-  "& > tbody > p": {
-    fontSize: 18,
-    marginTop: 15,
-  },
-});
 
 const Invoices = ({ invoices, removeInvoice }) => {
   return (
-    <StyledTable>
-      <TableHead>
-        <TableRow>
-          <TableCell>Vendor</TableCell>
-          <TableCell>Product</TableCell>
-          <TableCell>Amount</TableCell>
-          <TableCell>Date</TableCell>
-          <TableCell>Status</TableCell>
-          <TableCell>Action</TableCell>
-        </TableRow>
-      </TableHead>
-      <TableBody>
-        {invoices && Array.isArray(invoices) && invoices.length > 0 ? (
-          invoices.map((invoice) => (
-            <TableRow key={invoice.id}>
-              <TableCell>{invoice.vendor}</TableCell>
-              <TableCell>{invoice.product}</TableCell>
-              <TableCell>Rs {invoice.amount}</TableCell>
-              <TableCell>{invoice.date}</TableCell>
-              <TableCell>{invoice.action}</TableCell>
-              <TableCell>
-                <Button
-                  variant="contained"
-                  color="success"
-                  onClick={() => removeInvoice(invoice.id)}
-                >
-                  Mark Done
-                </Button>
-              </TableCell>
-            </TableRow>
-          ))
-        ) : (
+    <TableContainer component={Paper} sx={{ marginTop: 4 }}>
+      <Table>
+        <TableHead>
           <TableRow>
-            <TableCell colSpan={6}>
-              <Typography>No pending invoices</Typography>
+            <TableCell>
+              <strong>Vendor</strong>
+            </TableCell>
+            <TableCell>
+              <strong>Product</strong>
+            </TableCell>
+            <TableCell>
+              <strong>Amount</strong>
+            </TableCell>
+            <TableCell>
+              <strong>Date</strong>
+            </TableCell>
+            <TableCell>
+              <strong>Status</strong>
+            </TableCell>
+            <TableCell>
+              <strong>Action</strong>
             </TableCell>
           </TableRow>
-        )}
-      </TableBody>
-    </StyledTable>
+        </TableHead>
+        <TableBody>
+          {invoices?.length > 0 ? (
+            invoices.map((invoice) => (
+              <TableRow key={invoice.id}>
+                <TableCell>{invoice.vendor}</TableCell>
+                <TableCell>{invoice.product}</TableCell>
+                <TableCell>Rs {invoice.amount}</TableCell>
+                <TableCell>{invoice.date}</TableCell>
+                <TableCell>{invoice.action}</TableCell>
+                <TableCell>
+                  <Button
+                    variant="outlined"
+                    color="success"
+                    size="small"
+                    sx={{ fontWeight: 'bold' }}
+                    onClick={() => removeInvoice(invoice.id)}
+                  >
+                    Mark Done
+                  </Button>
+                </TableCell>
+              </TableRow>
+            ))
+          ) : (
+            <TableRow>
+              <TableCell colSpan={6} align="center">
+                <Typography color="text.secondary">
+                  No pending invoices
+                </Typography>
+              </TableCell>
+            </TableRow>
+          )}
+        </TableBody>
+      </Table>
+    </TableContainer>
   );
 };
 
