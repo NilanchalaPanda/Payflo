@@ -37,12 +37,35 @@ const Home = () => {
           justifyContent="space-between"
           alignItems="center"
           mb={2}
+          flexDirection={"row"}
         >
-          <Typography variant="h4" fontWeight={500}>
+          <Typography
+            variant="h4"
+            fontWeight={500}
+            sx={{
+              fontSize: {
+                xs: "1.5rem",
+                sm: "2.125rem",
+              },
+            }}
+          >
             Pending Invoices
           </Typography>
           {!addInvoice && (
-            <Button variant="contained" onClick={toggleInvoice}>
+            <Button
+              variant="contained"
+              onClick={toggleInvoice}
+              sx={{
+                fontSize: {
+                  xs: "0.75rem",
+                  sm: "0.875rem",
+                },
+                padding: {
+                  xs: "6px 12px",
+                  sm: "8px 16px",
+                },
+              }}
+            >
               Add Invoice
             </Button>
           )}

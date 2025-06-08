@@ -7,7 +7,7 @@ const defaultObj = {
   product: "",
   amount: 0,
   date: "",
-  action: "pending",
+  action: "Pending",
 };
 
 const AddInvoice = ({ setAddInvoice }) => {
